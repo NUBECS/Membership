@@ -81,6 +81,7 @@ namespace Nube
         public virtual DbSet<NomineeInsertBranch> NomineeInsertBranches { get; set; }
         public virtual DbSet<ViewNomineeInsertBranch> ViewNomineeInsertBranches { get; set; }
         public virtual DbSet<MemberInsertBranch> MemberInsertBranches { get; set; }
+        public virtual DbSet<FeesDetail> FeesDetails { get; set; }
         public virtual DbSet<MASTERMEMBERNEW> MASTERMEMBERNEWs { get; set; }
         public virtual DbSet<MasterMemberStatu> MasterMemberStatus { get; set; }
         public virtual DbSet<FeesDetail> FeesDetails { get; set; }
