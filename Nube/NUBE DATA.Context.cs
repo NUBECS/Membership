@@ -32,7 +32,6 @@ namespace Nube
         public virtual DbSet<CountrySetup> CountrySetups { get; set; }
         public virtual DbSet<dtproperty> dtproperties { get; set; }
         public virtual DbSet<EventHistory> EventHistories { get; set; }
-        public virtual DbSet<FeesDetail> FeesDetails { get; set; }
         public virtual DbSet<FeesMaster> FeesMasters { get; set; }
         public virtual DbSet<LoginHistory> LoginHistories { get; set; }
         public virtual DbSet<MASTERBANK> MASTERBANKs { get; set; }
@@ -84,5 +83,6 @@ namespace Nube
         public virtual DbSet<MemberInsertBranch> MemberInsertBranches { get; set; }
         public virtual DbSet<MASTERMEMBERNEW> MASTERMEMBERNEWs { get; set; }
         public virtual DbSet<MasterMemberStatu> MasterMemberStatus { get; set; }
+        public virtual DbSet<FeesDetail> FeesDetails { get; set; }
     }
 }
