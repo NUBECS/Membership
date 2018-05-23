@@ -1535,7 +1535,7 @@ namespace Nube.Transaction
                     txtResAddress1.Text = qry.ADDRESS1;
                     txtResAddress2.Text = qry.ADDRESS2;
                     txtResAddress3.Text = qry.ADDRESS3;
-                    txtResPhoneNo.Text = qry.PHONE;
+                    txtResPhoneNo.Text = qry.PHONE.ToString();
                     txtResMobileNo.Text = (qry.MOBILE != null ? qry.MOBILE.ToString() : "");
                     dtpDOB.SelectedDate = Convert.ToDateTime(qry.DATEOFBIRTH);
                     cmbGender.Text = qry.SEX;
@@ -1761,7 +1761,7 @@ namespace Nube.Transaction
                 }
 
                 var Attachment = (from x in db.MembershipAttachments where x.MemberCode == dMember_Code select x).ToList();
-                if (Attachment != null)
+                if (Attachment != null && Attachment.Count > 0)
                 {
                     tiPhoto.Visibility = Visibility.Visible;
                 }
