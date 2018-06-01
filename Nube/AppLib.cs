@@ -31,7 +31,18 @@ namespace Nube
         public static string connstatus = System.Configuration.ConfigurationManager.ConnectionStrings["NUBESTATUS"].ConnectionString;
         public static List<UserPrevilage> lstUsreRights = new List<UserPrevilage>();
         public static List<TVMASTERMEMBER> lstTVMasterMember = new List<TVMASTERMEMBER>();
-        public static List<ViewMasterMember> lstMstMember = new List<ViewMasterMember>();        
+        public static List<ViewMasterMember> lstMstMember = new List<ViewMasterMember>();
+        public static List<MASTERCITY> lstMASTERCITY = new List<MASTERCITY>();
+        public static List<MASTERSTATE> lstMASTERSTATE = new List<MASTERSTATE>();
+        public static List<CountrySetup> lstCountrySetup = new List<CountrySetup>();
+        public static List<MASTERRELATION> lstMASTERRELATION = new List<MASTERRELATION>();
+        public static List<NameTitleSetup> lstNameTitleSetup = new List<NameTitleSetup>();
+        public static List<MASTERBANK> lstMASTERBANK = new List<MASTERBANK>();
+        public static List<MASTERBANKBRANCH> lstMASTERBANKBRANCH = new List<MASTERBANKBRANCH>();
+        public static List<MASTERMEMBERTYPE> lstMASTERMEMBERTYPE = new List<MASTERMEMBERTYPE>();
+        public static List<MASTERRACE> lstMASTERRACE = new List<MASTERRACE>();
+        
+            
 
         public static DataTable dtMemberQuery = new DataTable();        
         public static DataTable dtAnnualStatement = new DataTable();
@@ -80,7 +91,7 @@ namespace Nube
 
         public static int MonthDiff(this DateTime date1, DateTime date2)
         {
-            return (int)((date1.Year - date2.Year) * 12) + (date1.Month - date2.Month);
+            return (int)((date2.Year - date1.Year) * 12) + (date2.Month - date1.Month);
         }
 
         public static DataTable LINQResultToDataTable<T>(IEnumerable<T> Linqlist)

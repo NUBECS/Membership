@@ -183,6 +183,16 @@ namespace Nube
                         progressBar1.Value = 8;
                         System.Windows.Forms.Application.DoEvents();
 
+                        AppLib.lstMASTERCITY = db.MASTERCITies.ToList();
+                        AppLib.lstMASTERSTATE = db.MASTERSTATEs.ToList();
+                        AppLib.lstCountrySetup = db.CountrySetups.ToList();
+                        AppLib.lstMASTERRELATION = db.MASTERRELATIONs.ToList();
+                        AppLib.lstNameTitleSetup = db.NameTitleSetups.ToList();
+                        AppLib.lstMASTERBANK = db.MASTERBANKs.ToList();
+                        AppLib.lstMASTERBANKBRANCH = db.MASTERBANKBRANCHes.ToList();
+                        AppLib.lstMASTERMEMBERTYPE = db.MASTERMEMBERTYPEs.ToList();
+                        AppLib.lstMASTERRACE = db.MASTERRACEs.ToList();
+
                         LoginHistory lg = new LoginHistory();
                         lg.UserId = AppLib.iUserCode;
                         lg.LoginOn = DateTime.Now;
@@ -315,7 +325,7 @@ namespace Nube
                         TS.UpdatedTime = DateTime.Now;
                         db.SaveChanges();
                     }
-                }               
+                }
             }
             catch (Exception ex)
             {

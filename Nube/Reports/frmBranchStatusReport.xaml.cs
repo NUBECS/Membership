@@ -53,7 +53,15 @@ namespace Nube.Reports
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            GetDetails();
+            if (dtpDOB.SelectedDate > Convert.ToDateTime("28/FEB/2018").Date)
+            {
+                GetDetails();
+            }
+            else
+            {
+                MessageBox.Show("No Records Found");
+            }
+               
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
