@@ -43,7 +43,7 @@ namespace Nube
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            {               
                 loginIn();
             }
             catch (Exception ex)

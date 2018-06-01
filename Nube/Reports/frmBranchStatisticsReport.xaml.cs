@@ -512,18 +512,17 @@ namespace Nube.Reports
                     //" --FROM VIEWMASTERMEMBER ST (NOLOCK) \r" +
                     //" WHERE ST.MEMBERSTATUSCODE IN(1,2) AND ST.DATEOFJOINING < '{0:dd/MMM/yyyy}'" + sWhere, Convert.ToDateTime(dtfirstDayOfNextMonth));
 
-
-                    Qry = string.Format(" SELECT ISNULL(NB.NUBE_BRANCH_NAME,'') AS NUBE_BRANCH_NAME,ISNULL(MB.BANK_NAME,'') AS BANK_NAME, \r" +
-                                        " ISNULL(MB.BANK_USERCODE, '') + '_' + ISNULL(BB.BANKBRANCH_USERCODE, '') AS BANKBRANCH, \r" +
+                    Qry = string.Format(" SELECT ISNULL(NB.NUBE_BRANCH_NAME,'') NUBE_BRANCH_NAME,ISNULL(MB.BANK_NAME,'') BANK_NAME,  \r" +
+                                        " ISNULL(MB.BANK_USERCODE, '') + '_' + ISNULL(BB.BANKBRANCH_USERCODE, '') AS BANKBRANCH,  \r" +
                                         " ISNULL(MM.SEX, '') AS SEX, ISNULL(MM.RACE_CODE, 0) AS RACE_CODE, \r" +
-                                        " (CASE WHEN ST.MEMBERSTATUSCODE = 1 THEN 1.0 ELSE 2.0  END) STATUS \r" +
-                                        " FROM ACTIVEMEMBERHISTORY ST(NOLOCK) \r" +
-                                        " LEFT JOIN MASTERMEMBER MM(NOLOCK) ON MM.MEMBER_CODE=ST.MEMBERCODE \r" +
-                                        " LEFT JOIN MASTERBANK MB(NOLOCK) ON MB.BANK_CODE=ST.BANKCODE \r" +
-                                        " LEFT JOIN MASTERBANKBRANCH BB(NOLOCK) ON BB.BANKBRANCH_CODE=ST.BRANCHCODE \r" +
+                                        " (CASE WHEN ST.STATUS_CODE = 1 THEN 1.0 ELSE 2.0  END) STATUS \r" +
+                                        " FROM MASTERMEMBERSTATUS ST(NOLOCK) \r" +
+                                        " LEFT JOIN MASTERMEMBER MM(NOLOCK) ON MM.MEMBER_CODE=ST.MEMBER_CODE \r" +
+                                        " LEFT JOIN MASTERBANK MB(NOLOCK) ON MB.BANK_CODE=ST.BANK_CODE \r" +
+                                        " LEFT JOIN MASTERBANKBRANCH BB(NOLOCK) ON BB.BANKBRANCH_CODE=ST.BRANCH_CODE \r" +
                                         " LEFT JOIN MASTERNUBEBRANCH NB(NOLOCK) ON NB.NUBE_BRANCH_CODE=BB.NUBE_BRANCH_CODE \r" +
                                         " LEFT JOIN MASTERSTATE MS(NOLOCK) ON MS.STATE_CODE=BB.BANKBRANCH_STATE_CODE \r" +
-                                        " WHERE ST.MEMBERSTATUSCODE IN(1,2) AND MONTH(ST.ENTRYDATE)=MONTH('{0:dd/MMM/yyyy}') AND YEAR(ST.ENTRYDATE)=YEAR('{0:dd/MMM/yyyy}') " + sWhere, dtpDOB.SelectedDate);
+                                        " WHERE ST.STATUS_CODE IN(1,2) AND ST.FEEMONTH=MONTH('{0:dd/MMM/yyyy}') AND ST.FEEYEAR=YEAR('{0:dd/MMM/yyyy}') " + sWhere, dtpDOB.SelectedDate);
 
                     SqlCommand cmd = new SqlCommand(Qry, con);
                     SqlDataAdapter sdp = new SqlDataAdapter(cmd);
