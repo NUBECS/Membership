@@ -47,7 +47,7 @@
                     <CommandBinding Command="Copy" CanExecute="CommandBinding_CanExecute" />
                 </PasswordBox.CommandBindings>
             </PasswordBox>
-            <Button x:Name="btnLogin" Content="Login" Foreground="{DynamicResource PrimaryHueLightBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="35" FontSize="19" FontWeight="Bold" Margin="12,158,0,0" Click="btnLogin_Click" />
+            <Button x:Name="btnLogin" Content="Login" Foreground="{DynamicResource PrimaryHueLightBrush}" HorizontalAlignment="Left" Width="100" FontSize="19" FontWeight="Bold" Margin="12,158,0,0" Click="btnLogin_Click" Height="35" VerticalAlignment="Top" />
             <Button x:Name="btnClear" Content="Clear" Foreground="{DynamicResource PrimaryHueLightBrush}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Height="35" FontSize="19" FontWeight="Bold" Margin="127,158,0,0" Click="btnClear_Click" />
             <Button x:Name="btnHome" Content="Exit" Foreground="{DynamicResource PrimaryHueLightBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="35" FontSize="19" FontWeight="Bold"  Margin="242,158,0,0"  Click="btnHome_Click"/>
         </Grid>

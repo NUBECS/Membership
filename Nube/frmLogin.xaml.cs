@@ -43,7 +43,7 @@ namespace Nube
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            {               
                 loginIn();
             }
             catch (Exception ex)
@@ -190,6 +190,16 @@ namespace Nube
                         progressBar1.Value = 8;
                         System.Windows.Forms.Application.DoEvents();
                         BindDefaultList();
+
+                        AppLib.lstMASTERCITY = db.MASTERCITies.ToList();
+                        AppLib.lstMASTERSTATE = db.MASTERSTATEs.ToList();
+                        AppLib.lstCountrySetup = db.CountrySetups.ToList();
+                        AppLib.lstMASTERRELATION = db.MASTERRELATIONs.ToList();
+                        AppLib.lstNameTitleSetup = db.NameTitleSetups.ToList();
+                        AppLib.lstMASTERBANK = db.MASTERBANKs.ToList();
+                        AppLib.lstMASTERBANKBRANCH = db.MASTERBANKBRANCHes.ToList();
+                        AppLib.lstMASTERMEMBERTYPE = db.MASTERMEMBERTYPEs.ToList();
+                        AppLib.lstMASTERRACE = db.MASTERRACEs.ToList();
 
                         LoginHistory lg = new LoginHistory();
                         lg.UserId = AppLib.iUserCode;

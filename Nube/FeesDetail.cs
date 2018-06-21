@@ -24,8 +24,8 @@ namespace Nube
         public Nullable<decimal> AmtSubs { get; set; }
         public string Dept { get; set; }
         public string UpdatedStatus { get; set; }
-        public Nullable<int> FeeYear { get; set; }
-        public Nullable<int> FeeMonth { get; set; }
+        public int FeeYear { get; set; }
+        public int FeeMonth { get; set; }
         public string Reason { get; set; }
         public bool IsUnPaid { get; set; }
         public bool IsNotMatch { get; set; }
