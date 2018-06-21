@@ -44,7 +44,7 @@
                               Foreground="{DynamicResource PrimaryHueDarkBrush}"   Background="Beige"
                                          PlacementMode="BottomAndAlignCentres"
                                          ToolTipService.Placement="Right"
-                                         ToolTip="Payment Entry For Arrear, LEVY  &amp; TDF" Margin="190,388,0,144" Width="50" Height="Auto">
+                                         ToolTip="Payment Entry For Fees, Arrear, LEVY  &amp; TDF" Margin="190,388,0,144" Width="50" Height="Auto">
                 <StackPanel>
                     <Button x:Name="btnFeeCheck" Background="White" ToolTip="FeeEntry" Tag="FeeEntry" Click="btnFeeCheck_Click" >FeeEntry</Button>                    
                     <Button x:Name="btnLevy" Background="White" ToolTip="Levy" Tag="LEVY" Click="btnLevy_Click" >Levy</Button>

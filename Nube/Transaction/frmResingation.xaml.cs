@@ -496,7 +496,7 @@ namespace Nube.Transaction
             {
                 if (AppLib.lstMstMember.Count == 0)
                 {
-                    var lstMM = (from x in db.ViewMasterMembers select x).ToList();
+                    var lstMM = (from x in db.MemberStatusLogs select x).ToList();
                     AppLib.lstMstMember = lstMM;
                 }
             }

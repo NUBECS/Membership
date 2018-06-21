@@ -26,7 +26,7 @@ namespace Nube
     {
         nubebfsEntity db = new nubebfsEntity();
         private readonly BackgroundWorker BgWorker = new BackgroundWorker();
-
+        bool bIsClose = false;
         public frmLogin()
         {
             InitializeComponent();
@@ -56,7 +56,14 @@ namespace Nube
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (bIsClose == false)
+            {
+                if (MessageBox.Show(this, "Are you sure to exit?", "Exit Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Windows.Forms.Application.Exit();
+                    this.Close();
+                }
+            }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -182,6 +189,7 @@ namespace Nube
                         }
                         progressBar1.Value = 8;
                         System.Windows.Forms.Application.DoEvents();
+                        BindDefaultList();
 
                         LoginHistory lg = new LoginHistory();
                         lg.UserId = AppLib.iUserCode;
@@ -193,9 +201,9 @@ namespace Nube
                         System.Windows.Forms.Application.DoEvents();
 
                         frmMain frm = new frmMain();
+                        frm.Show();
+                        bIsClose = true;
                         this.Close();
-                        frm.ShowDialog();
-
                         BgWorker.RunWorkerAsync();
                     }
                 }
@@ -205,6 +213,20 @@ namespace Nube
                     MessageBox.Show("Invalid User");
                 }
             }
+        }
+
+        void BindDefaultList()
+        {
+            AppLib.lstMASTERCITY = db.MASTERCITies.OrderBy(x => x.CITY_NAME).ToList();
+            AppLib.lstMASTERSTATE = db.MASTERSTATEs.OrderBy(x => x.STATE_NAME).ToList();
+            AppLib.lstCountrySetup = db.CountrySetups.OrderBy(x => x.CountryName).ToList();
+            AppLib.lstMASTERRELATION = db.MASTERRELATIONs.OrderBy(x => x.RELATION_NAME).ToList();
+            AppLib.lstNameTitleSetup = db.NameTitleSetups.OrderBy(x => x.TitleName).ToList();
+            AppLib.lstMASTERBANK = db.MASTERBANKs.OrderBy(x => x.BANK_NAME).ToList();
+            AppLib.lstMASTERBANKBRANCH = db.MASTERBANKBRANCHes.OrderBy(x => x.BANKBRANCH_NAME).ToList();
+            AppLib.lstMASTERMEMBERTYPE = db.MASTERMEMBERTYPEs.OrderBy(x => x.MEMBERTYPE_NAME).ToList();
+            AppLib.lstMASTERRACE = db.MASTERRACEs.OrderBy(x => x.RACE_NAME).ToList();
+            AppLib.BindEmail();
         }
 
         #endregion
@@ -315,7 +337,7 @@ namespace Nube
                         TS.UpdatedTime = DateTime.Now;
                         db.SaveChanges();
                     }
-                }               
+                }
             }
             catch (Exception ex)
             {

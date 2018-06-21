@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,12 +55,7 @@ namespace Nube.Reports
                     dtpToDate.Focus();
                     return;
                 }
-                else if (Convert.ToDateTime(dtpFromDate.SelectedDate).Month > Convert.ToDateTime(dtpToDate.SelectedDate).Month)
-                {
-                    MessageBox.Show("To Date is Grater than From Date!");
-                    dtpToDate.Focus();
-                    return;
-                }
+               
                 else
                 {
                     fGetData();
@@ -173,7 +169,7 @@ namespace Nube.Reports
                                 if (j != 0)
                                 {
                                     worksheet.Cells[i + 6, j + 3] = dt.Rows[i][j].ToString();
-                                }                                
+                                }
                             }
                         }
 
@@ -340,19 +336,32 @@ namespace Nube.Reports
                 if (dt.Rows.Count > 0)
                 {
                     dgVariationReport.ItemsSource = dt.DefaultView;
-                    dgVariationReport.Columns[1].Header = string.Format("{0:MMM} A Member", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[2].Header = string.Format("{0:MMM} A Amount", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[3].Header = string.Format("{0:MMM} S Member", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[4].Header = string.Format("{0:MMM} S Amount", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[5].Header = string.Format("{0:MMM} Tot Member", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[6].Header = string.Format("{0:MMM} Tot Amount", dtpFromDate.SelectedDate);
-                    dgVariationReport.Columns[7].Header = string.Format("{0:MMM} A Member", dtpToDate.SelectedDate);
-                    dgVariationReport.Columns[8].Header = string.Format("{0:MMM} A Amount", dtpToDate.SelectedDate);
-                    dgVariationReport.Columns[9].Header = string.Format("{0:MMM} S Member", dtpToDate.SelectedDate);
-                    dgVariationReport.Columns[10].Header = string.Format("{0:MMM} S Amount", dtpToDate.SelectedDate);
-                    dgVariationReport.Columns[11].Header = string.Format("{0:MMM} Tot Member", dtpToDate.SelectedDate);
-                    dgVariationReport.Columns[12].Header = string.Format("{0:MMM} Tot Amount", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[1].Header = string.Format("{0:MMM} A Amount", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[2].Header = string.Format("{0:MMM} A Member", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[3].Header = string.Format("{0:MMM} S Amount", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[4].Header = string.Format("{0:MMM} S Member", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[5].Header = string.Format("{0:MMM} Tot Amount", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[6].Header = string.Format("{0:MMM} Tot Member", dtpFromDate.SelectedDate);
+                    dgVariationReport.Columns[7].Header = string.Format("{0:MMM} A Amount", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[8].Header = string.Format("{0:MMM} A Member", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[9].Header = string.Format("{0:MMM} S Amount", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[10].Header = string.Format("{0:MMM} S Member", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[11].Header = string.Format("{0:MMM} Tot Amount", dtpToDate.SelectedDate);
+                    dgVariationReport.Columns[12].Header = string.Format("{0:MMM} Tot Member", dtpToDate.SelectedDate);
+
+                    VariationReport.Reset();
+                    ReportDataSource masterdata = new ReportDataSource("DataSet1", dt);
+                    VariationReport.LocalReport.DataSources.Add(masterdata);
+                    VariationReport.LocalReport.ReportEmbeddedResource = "Nube.Reports.rptVariationReport.rdlc";
+                    ReportParameter[] RP = new ReportParameter[2];
+                    string fm=string.Format("{0:MMM}", dtpFromDate.SelectedDate);
+                    string sm = string.Format("{0:MMM}", dtpToDate.SelectedDate);
+                    RP[0] = new ReportParameter("FirstMonth", fm);
+                    RP[1] = new ReportParameter("SecondMonth", sm);
+                    VariationReport.LocalReport.SetParameters(RP);
+                    VariationReport.RefreshReport();
                 }
+                
                 else
                 {
                     dgVariationReport.ItemsSource = null;
@@ -361,9 +370,6 @@ namespace Nube.Reports
                 }
             }
         }
-
         #endregion
-
-
     }
 }

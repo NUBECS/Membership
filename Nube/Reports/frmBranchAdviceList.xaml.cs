@@ -84,7 +84,7 @@ namespace Nube
                         ReportParameter[] rp = new ReportParameter[3];
                         if (!string.IsNullOrEmpty(cmbBranch.Text))
                         {
-                            rp[0] = new ReportParameter("BranchName", cmbBranch.Text);
+                            rp[0] = new ReportParameter("BranchName","Branch Name : " +cmbBranch.Text);
                         }
                         else
                         {
@@ -93,7 +93,7 @@ namespace Nube
                         rp[1] = new ReportParameter("Month", String.Format("{0:MMM-yyyy}", dtpDate.SelectedDate.Value));
                         if (!string.IsNullOrEmpty(cmbBranch.Text))
                         {
-                            rp[2] = new ReportParameter("BranchCode", cmbBranch.SelectedValue.ToString());
+                            rp[2] = new ReportParameter("BranchCode", "Branch Code : " +cmbBranch.SelectedValue.ToString());
                         }
                         else
                         {
@@ -129,7 +129,7 @@ namespace Nube
                 ReportParameter[] rp = new ReportParameter[3];
                 if (!string.IsNullOrEmpty(cmbBranch.Text))
                 {
-                    rp[0] = new ReportParameter("BranchName", cmbBranch.Text);
+                    rp[0] = new ReportParameter("BranchName", "Branch Name : " +cmbBranch.Text);
                 }
                 else
                 {
@@ -138,7 +138,7 @@ namespace Nube
                 rp[1] = new ReportParameter("Month", String.Format("{0:MMM-yyyy}", dtpDate.SelectedDate.Value));
                 if (!string.IsNullOrEmpty(cmbBranch.Text))
                 {
-                    rp[2] = new ReportParameter("BranchCode", cmbBranch.SelectedValue.ToString());
+                    rp[2] = new ReportParameter("BranchCode", "Branch Code : "  +cmbBranch.SelectedValue.ToString());
                 }
                 else
                 {
@@ -277,7 +277,9 @@ namespace Nube
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             cmbBranch.Text = "";
-            dtpDate.SelectedDate = DateTime.UtcNow.Date;
+            dtpDate.Text ="";
+            NewMemberReport.Clear();
+            ResignMemberReport.Clear();
         }
 
     }
